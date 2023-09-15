@@ -12,7 +12,7 @@ object **AndrePinto** {
  val name = "André Ferreira Pinto";
  val acknowledgements = "Desenvolvimento Web"
 
- val primarySkillset = "Backend, SQL, Api REST, ,Scrum "
+ val primarySkillset = "Backend, SQL, Api REST, Scrum"
  val languages = listOf("C#", "JavaScript", "PHP")
 
 }
