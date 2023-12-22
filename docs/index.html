@@ -120,11 +120,23 @@ s
             <img src="assets\pinto.svg"/>
             <h1 class="main-title">SOLUTIONS</h1>
             <div class="button-area">
-                <div class="button">LINKEDIN</div>
-                <div class="button">GITHUB</div>
-                <div class="button">WHATSAPP</div>
+                <div class="button" id="linkedinbtn">LINKEDIN</div>
+                <div class="button" id="githubbtn">GITHUB</div>
+                <div class="button" id="whatsappbtn">WHATSAPP</div>
             </div>  
         </div>
-              
+        <script>
+            document.querySelector('#linkedinbtn').addEventListener('click', function (event) {
+                window.location.href = "https://www.linkedin.com/in/af-pinto/";
+            },false);
+
+            document.querySelector('#githubbtn').addEventListener('click', function (event) {
+                window.location.href = "https://github.com/andferr";
+            },false);
+
+            document.querySelector('#whatsappbtn').addEventListener('click', function (event) {
+                window.location.href = "https://whatsa.me/5532984110933";
+            },false);
+        </script>
     </body>
 </body>
