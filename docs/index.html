@@ -8,7 +8,7 @@
         <style>
             html {
             --s: 82px; /* control the size */
-            --c1: #b2b2b2;
+            --c1: rgba(178, 178, 178, 0.7);
             --c2: #ffffff;
             --c3: #d9d9d9;
             
@@ -44,8 +44,8 @@
             }
 
             .button {
+                font-family: 'Oswald', sans-serif;
                 margin: 10px;
-                padding: 10px;
                 border: 2px solid black;
                 text-align: center;
                 text-transform: uppercase;
@@ -53,7 +53,12 @@
                 overflow: hidden;
                 transition: 0.3s;
                 font-weight: bold;
+                font-size: 1.3em;
+                border-radius: 25px;
+                padding-left: 30px;
+                padding-right: 30px;
             }
+s
             .button:after {
                 position: absolute;
                 transition: 0.3s;
@@ -62,21 +67,16 @@
                 left: 50%;
                 bottom: 0;
                 height: 3px;
-                background: black;
-                height: 120%;
-                left: -10%;
-                transform: skewX(15deg);
-                z-index: -1;
+                background: white;
             }
             .button:hover {
                 cursor: pointer;
-                color: white;
+                transform: scale(1.2);
             }
             .button:hover:after {
-                /* width: 100%;
-                left: 0; */
-                left: -10%;
-                width: 120%;
+                width: 100%;
+                left: 0;
+                width: 0%;
             }
 
             .button-area{
