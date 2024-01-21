@@ -5,7 +5,7 @@ Meu objetivo é solucionar problemas. Gosto do processo criativo e do desafio as
 ## Mais sobre mim
 
 
-<img align="right" width="300" src="https://github.com/andferr/andferr/assets/5804056/37a1664d-cae6-4fb6-a4f7-b2229ba531cc?fit=1281%2C716&ssl=1" />
+<img height="190" align="right" src="https://github.com/andferr/andferr/assets/5804056/4cebc7b5-a52a-4643-a000-6b9bd7bba9ae&ssl=1" />
 
 ```kotlin
 object **AndrePinto** {
@@ -13,7 +13,7 @@ object **AndrePinto** {
  val acknowledgements = "Desenvolvimento Web"
 
  val primarySkillset = "Backend, SQL, Api REST, Scrum"
- val languages = listOf("C#", "JavaScript", "PHP")
+ val languages = listOf("C#", "JavaScript", "PHP", "NodeJs", "React")
 
 }
 ```
