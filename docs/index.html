@@ -1,151 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <body>
-        <head>
-            <meta charset="UTF-8">
-            <link rel="icon" href="assets/favicon.ico">
-            <title>Pinto Solutions</title>
-            <meta content="width=device-width, initial-scale=1" name="viewport" />
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="assets/favicon.ico">
+        <title>Pinto Solutions</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+        
+        <style>
+            html {
+            --s: 82px; /* control the size */
+            --c1: rgba(227, 225, 225, 0.7);
+            --c2: #dfdddd;
+            --c3: #f5f4f4;
             
-            <style>
-                html {
-                --s: 82px; /* control the size */
-                --c1: rgba(227, 225, 225, 0.7);
-                --c2: #dfdddd;
-                --c3: #f5f4f4;
-                
-                --_g: var(--c3) 0 120deg,#0000 0;
-                background:
-                    conic-gradient(from -60deg at 50% calc(100%/3),var(--_g)),
-                    conic-gradient(from 120deg at 50% calc(200%/3),var(--_g)),
-                    conic-gradient(from  60deg at calc(200%/3),var(--c3) 60deg,var(--c2) 0 120deg,#0000 0),
-                    conic-gradient(from 180deg at calc(100%/3),var(--c1) 60deg,var(--_g)),
-                    linear-gradient(90deg,var(--c1)   calc(100%/6),var(--c2) 0 50%,
-                                        var(--c1) 0 calc(500%/6),var(--c2) 0);
-                background-size: calc(1.732*var(--s)) var(--s);
-                }
+            --_g: var(--c3) 0 120deg,#0000 0;
+            background:
+                conic-gradient(from -60deg at 50% calc(100%/3),var(--_g)),
+                conic-gradient(from 120deg at 50% calc(200%/3),var(--_g)),
+                conic-gradient(from  60deg at calc(200%/3),var(--c3) 60deg,var(--c2) 0 120deg,#0000 0),
+                conic-gradient(from 180deg at calc(100%/3),var(--c1) 60deg,var(--_g)),
+                linear-gradient(90deg,var(--c1)   calc(100%/6),var(--c2) 0 50%,
+                                    var(--c1) 0 calc(500%/6),var(--c2) 0);
+            background-size: calc(1.732*var(--s)) var(--s);
+            }
 
-                .logo-container{
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                }
+            .logo-container{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
 
+            .logo-container img{
+                width: 40%;
+            }
+
+            .main-title{
+                font-family: 'Oswald', sans-serif;
+                font-size: 2.5em;
+                letter-spacing: 3vw;
+                margin-left: 10px;
+            }
+
+            .button {
+                font-family: 'Oswald', sans-serif;
+                margin: 10px;
+                border: 2px solid black;
+                text-align: center;
+                text-transform: uppercase;
+                position: relative;
+                overflow: hidden;
+                transition: 0.3s;
+                font-weight: bold;
+                font-size: 1.3em;
+                border-radius: 25px;
+                padding-left: 30px;
+                padding-right: 30px;
+                -webkit-user-select: none; /* Safari */
+                -ms-user-select: none; /* IE 10 and IE 11 */
+                user-select: none; /* Standard syntax */
+            }
+
+            .button:after {
+                position: absolute;
+                transition: 0.3s;
+                content: "";
+                width: 0;
+                left: 50%;
+                bottom: 0;
+                height: 3px;
+                background: white;
+            }
+            .button:hover {
+                cursor: pointer;
+                transform: scale(1.2);
+            }
+            .button:hover:after {
+                width: 100%;
+                left: 0;
+                width: 0%;
+            }
+
+            .button-area{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            @media only screen and (max-width: 1100px) {
                 .logo-container img{
                     width: 40%;
                 }
+            }
 
-                .main-title{
-                    font-family: 'Oswald', sans-serif;
-                    font-size: 2.5em;
-                    letter-spacing: 3vw;
-                    margin-left: 10px;
+            @media only screen and (max-width: 900px) {
+                .logo-container img{
+                    width: 55%;
                 }
+            }
 
-                .button {
-                    font-family: 'Oswald', sans-serif;
-                    margin: 10px;
-                    border: 2px solid black;
-                    text-align: center;
-                    text-transform: uppercase;
-                    position: relative;
-                    overflow: hidden;
-                    transition: 0.3s;
-                    font-weight: bold;
-                    font-size: 1.3em;
-                    border-radius: 25px;
-                    padding-left: 30px;
-                    padding-right: 30px;
-                    -webkit-user-select: none; /* Safari */
-                    -ms-user-select: none; /* IE 10 and IE 11 */
-                    user-select: none; /* Standard syntax */
+            @media only screen and (max-width: 780px) {
+                .logo-container img{
+                    width: 50%;
                 }
-    s
-                .button:after {
-                    position: absolute;
-                    transition: 0.3s;
-                    content: "";
-                    width: 0;
-                    left: 50%;
-                    bottom: 0;
-                    height: 3px;
-                    background: white;
-                }
-                .button:hover {
-                    cursor: pointer;
-                    transform: scale(1.2);
-                }
-                .button:hover:after {
-                    width: 100%;
-                    left: 0;
-                    width: 0%;
+            }
+
+            @media only screen and (max-width: 500px) {
+                .logo-container img{
+                    width: 75%;
                 }
 
                 .button-area{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
+                    flex-direction: column;
+                    width: 60%; 
                 }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="logo-container">
+            <img src="assets\pinto.svg"/>
+            <h1 class="main-title">SOLUTIONS</h1>
+            <div class="button-area">
+                <div class="button" id="linkedinbtn">LINKEDIN</div>
+                <div class="button" id="githubbtn">GITHUB</div>
+                <div class="button" id="whatsappbtn">WHATSAPP</div>
+            </div>  
+        </div>
+        <script>
+            document.querySelector('#linkedinbtn').addEventListener('click', function (event) {
+                window.location.href = "https://www.linkedin.com/in/af-pinto/";
+            },false);
 
-                @media only screen and (max-width: 1100px) {
-                    .logo-container img{
-                        width: 40%;
-                    }
-                }
+            document.querySelector('#githubbtn').addEventListener('click', function (event) {
+                window.location.href = "https://github.com/andferr";
+            },false);
 
-                @media only screen and (max-width: 900px) {
-                    .logo-container img{
-                        width: 55%;
-                    }
-                }
-
-                @media only screen and (max-width: 780px) {
-                    .logo-container img{
-                        width: 50%;
-                    }
-                }
-
-                @media only screen and (max-width: 500px) {
-                    .logo-container img{
-                        width: 75%;
-                    }
-
-                    .button-area{
-                        flex-direction: column;
-                        width: 60%; 
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="logo-container">
-                <img src="assets\pinto.svg"/>
-                <h1 class="main-title">SOLUTIONS</h1>
-                <div class="button-area">
-                    <div class="button" id="linkedinbtn">LINKEDIN</div>
-                    <div class="button" id="githubbtn">GITHUB</div>
-                    <div class="button" id="whatsappbtn">WHATSAPP</div>
-                </div>  
-            </div>
-            <script>
-                document.querySelector('#linkedinbtn').addEventListener('click', function (event) {
-                    window.location.href = "https://www.linkedin.com/in/af-pinto/";
-                },false);
-
-                document.querySelector('#githubbtn').addEventListener('click', function (event) {
-                    window.location.href = "https://github.com/andferr";
-                },false);
-
-                document.querySelector('#whatsappbtn').addEventListener('click', function (event) {
-                    window.location.href = "https://whatsa.me/5532984110933";
-                },false);
-            </script>
-        </body>
+            document.querySelector('#whatsappbtn').addEventListener('click', function (event) {
+                window.location.href = "https://whatsa.me/5532984110933";
+            },false);
+        </script>
     </body>
 </html>
