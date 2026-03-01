@@ -1,5 +1,5 @@
 ---
-description: Como criar e registrar novos posts do blog (docs/posts)
+description: Como criar e registrar novos posts do blog (docs/content)
 alwaysApply: true
 ---
 
@@ -7,8 +7,8 @@ alwaysApply: true
 
 Ao criar ou editar posts do blog, seguir sempre esta convenção.
 
-- **Arquivo do post**: `docs/posts/<slug>.md` (slug = só minúsculas, números e hífens).
-- **Lista de posts**: `docs/posts/list.json` — array de objetos com `slug`, `date`, `title_pt`, `title_en`, `tags`. Sempre adicionar uma entrada nova aqui quando criar um `.md`.
+- **Arquivo do post**: `docs/content/<slug>.md` (slug = só minúsculas, números e hífens).
+- **Lista de posts**: `docs/content/list.json` — array de objetos com `slug`, `date`, `title_pt`, `title_en`, `tags`. Sempre adicionar uma entrada nova aqui quando criar um `.md`.
 
 ## Formato do `.md`
 
@@ -31,12 +31,13 @@ Pode usar Markdown normal: listas, **negrito**, *itálico*, links, blocos de có
 
 ## Ao criar um novo post
 
-1. Criar `docs/posts/<slug>.md` com frontmatter e seções `## PT` e `## EN`.
-2. Adicionar em `docs/posts/list.json` um objeto com os mesmos `slug`, `date`, `title_pt`, `title_en` e `tags` (se usar). Novo post no topo do array.
+1. Criar `docs/content/<slug>.md` com frontmatter e seções `## PT` e `## EN`.
+2. Adicionar em `docs/content/list.json` um objeto com os mesmos `slug`, `date`, `title_pt`, `title_en` e `tags` (se usar). Novo post no topo do array.
+3. (Opcional) Copiar o mesmo arquivo para `docs/content/<slug>.txt` — no GitHub Pages, se o .md retornar 404, o blog tenta carregar o .txt.
 
 ## Exemplo
 
-**Arquivo:** `docs/posts/ola-mundo.md`
+**Arquivo:** `docs/content/ola-mundo.md`
 
 ```markdown
 ---
@@ -60,7 +61,7 @@ First paragraph in English.
 Another paragraph. Use `###` to highlight sections.
 ```
 
-**Em** `docs/posts/list.json` (adicionar ao array):
+**Em** `docs/content/list.json` (adicionar ao array):
 
 ```json
 {

@@ -375,8 +375,11 @@
 
     <script>
         (function () {
-            const LIST_URL = '/posts/list.json';
-            const POSTS_BASE = '/posts/';
+            var pathname = window.location.pathname || '/';
+            var base = pathname.replace(/\/[^/]*$/, '') || '/';
+            if (!base.endsWith('/')) base += '/';
+            const LIST_URL = base + 'content/list.json';
+            const POSTS_BASE = base + 'content/';
             let lang = localStorage.getItem('blog-lang') || 'pt';
             let posts = [];
 
@@ -579,11 +582,14 @@
                 postLoading.style.display = 'block';
                 history.replaceState({ view: 'post', slug: slug }, '', 'blog.html#post-' + slug);
 
-                fetch(POSTS_BASE + slug + '.md')
-                    .then(function (r) {
-                        if (!r.ok) throw new Error('Post not found');
-                        return r.text();
-                    })
+                function tryFetch(url) {
+                    return fetch(url).then(function (r) {
+                        if (r.ok) return r.text();
+                        if (r.status === 404 && url.endsWith('.md')) return tryFetch(POSTS_BASE + slug + '.txt');
+                        throw new Error('Post not found');
+                    });
+                }
+                tryFetch(POSTS_BASE + slug + '.md')
                     .then(function (raw) {
                         const { meta, body } = parseFrontmatter(raw);
                         const sections = extractSections(body);

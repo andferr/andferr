@@ -61,16 +61,16 @@ No fim, pragmatismo não é sobre fazer menos.
 É sobre pensar melhor enquanto fazemos.
 
 ## EN
-Readings, pragmatism, and the programmer’s role in the age of AI
+Readings, pragmatism, and the programmer's role in the age of AI
 
-Over the past few weeks I’ve joined a book club with some colleagues. We pick a book, read a few chapters each week, and discuss every Friday. The current book is *The Pragmatic Programmer* by Andrew Hunt and David Thomas.
+Over the past few weeks I've joined a book club with some colleagues. We pick a book, read a few chapters each week, and discuss every Friday. The current book is *The Pragmatic Programmer* by Andrew Hunt and David Thomas.
 
-I’m turning those discussions into a short series of posts with my takeaways from each chapter.
+I'm turning those discussions into a short series of posts with my takeaways from each chapter.
 
-The book feels very timely: it doesn’t talk about AI directly, but it stresses that programming is about making decisions, not typing code — and decisions remain deeply human. The pragmatic programmer is defined by attitude: owning what you ship, thinking critically, learning continuously, and understanding that software lives in a context of people, time, business, and technical limits.
+The book feels very timely: it doesn't talk about AI directly, but it stresses that programming is about making decisions, not typing code — and decisions remain deeply human. The pragmatic programmer is defined by attitude: owning what you ship, thinking critically, learning continuously, and understanding that software lives in a context of people, time, business, and technical limits.
 
-The first chapter, *A Pragmatic Philosophy*, sets the tone: systems don’t degrade “out of nowhere” — they erode through neglect and small uncorrected mistakes. Quality isn’t perfection; it’s fitness for context. The book also stresses that communication is a technical skill: code, design choices, and even silence send a message.
+The first chapter, *A Pragmatic Philosophy*, sets the tone: systems don't degrade "out of nowhere" — they erode through neglect and small uncorrected mistakes. Quality isn't perfection; it's fitness for context. The book also stresses that communication is a technical skill: code, design choices, and even silence send a message.
 
-This is my first time reading the book. I’m grateful to my manager Carlos Monteiro and my colleague Adelson for starting the reading group and helping me build a consistent reading habit.
+This is my first time reading the book. I'm grateful to my manager Carlos Monteiro and my colleague Adelson for starting the reading group and helping me build a consistent reading habit.
 
-I plan to share reflections here every week as we move through the chapters. In the end, pragmatism isn’t about doing less — it’s about thinking better while we do it.
+I plan to share reflections here every week as we move through the chapters. In the end, pragmatism isn't about doing less — it's about thinking better while we do it.
