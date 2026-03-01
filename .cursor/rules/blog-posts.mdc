@@ -27,6 +27,8 @@ Corpo: duas seções com cabeçalhos de nível 2:
 
 Pode usar Markdown normal: listas, **negrito**, *itálico*, links, blocos de código, imagens. Imagens em `docs/assets/` referenciadas como `![alt](assets/nome.ext)`.
 
+**Subtítulos:** use `###` (nível 3) ou `##` (nível 2) para títulos de seção dentro do texto. Eles aparecem destacados na página (linha sutil abaixo e maior espaçamento). Exemplo: `### Um livro muito atual` para separar blocos de conteúdo e facilitar a leitura.
+
 ## Ao criar um novo post
 
 1. Criar `docs/posts/<slug>.md` com frontmatter e seções `## PT` e `## EN`.
@@ -48,8 +50,14 @@ tags: ["blog", "exemplo"]
 ## PT
 Primeiro parágrafo em português.
 
+### Subtítulo de seção
+Outro parágrafo. Use `###` para destacar partes do texto.
+
 ## EN
 First paragraph in English.
+
+### Section subtitle
+Another paragraph. Use `###` to highlight sections.
 ```
 
 **Em** `docs/posts/list.json` (adicionar ao array):

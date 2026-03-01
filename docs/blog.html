@@ -250,8 +250,24 @@
             font-weight: 400;
         }
         .post-article h1 { font-size: 1.5rem; }
-        .post-article h2 { font-size: 1.25rem; }
-        .post-article h3 { font-size: 1.1rem; }
+        .post-article h2 {
+            font-size: 1.25rem;
+            margin-top: 1.75rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.95);
+        }
+        .post-article h2:first-of-type { margin-top: 0; }
+        .post-article h3 {
+            font-size: 1.1rem;
+            margin-top: 1.35rem;
+            margin-bottom: 0.4rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.9);
+        }
+        .post-article h3:first-of-type { margin-top: 0; }
         .post-article p { margin: 0.75rem 0; }
         .post-article ul, .post-article ol { margin: 0.75rem 0; padding-left: 1.5rem; }
         .post-article a { color: #93c5fd; }
@@ -280,6 +296,15 @@
             background: rgba(255,255,255,0.15);
             border-radius: 0.25rem;
             margin-right: 0.35rem;
+        }
+        .post-article .post-signature {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: right;
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 0.95rem;
         }
         .loading, .error {
             text-align: center;
@@ -574,6 +599,7 @@
                             '<h1>' + escapeHtml(title) + '</h1>' +
                             '<div class="post-meta">' + escapeHtml(formatDate(meta.date || '')) + tagsHtml + '</div>' +
                             '<div class="post-body">' + html + '</div>' +
+                            '<div class="post-signature">— André Ferreira Pinto</div>' +
                             '</article>';
                         postLoading.style.display = 'none';
                     })

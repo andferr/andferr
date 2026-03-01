@@ -1,16 +1,9 @@
 [
   {
-    "slug": "testando-o-mecanismo-do-blog",
-    "date": "2025-02-28",
-    "title_pt": "Testando o mecanismo do blog",
-    "title_en": "Testing the blog mechanism",
-    "tags": ["blog", "teste", "tutorial"]
-  },
-  {
-    "slug": "exemplo-bem-vindo-ao-blog",
-    "date": "2025-02-28",
-    "title_pt": "Bem-vindo ao blog",
-    "title_en": "Welcome to the blog",
-    "tags": ["blog", "exemplo"]
+    "slug": "clube-do-livro-semana-um-programador-pragmatico",
+    "date": "2025-03-01",
+    "title_pt": "Clube do Livro — Semana 1: O Programador Pragmático",
+    "title_en": "Book Club — Week 1: The Pragmatic Programmer",
+    "tags": ["clube-do-livro", "programador-pragmático", "leitura"]
   }
 ]
