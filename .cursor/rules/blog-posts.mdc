@@ -1,0 +1,65 @@
+---
+description: Como criar e registrar novos posts do blog (docs/posts)
+alwaysApply: true
+---
+
+# Blog – Novo post
+
+Ao criar ou editar posts do blog, seguir sempre esta convenção.
+
+- **Arquivo do post**: `docs/posts/<slug>.md` (slug = só minúsculas, números e hífens).
+- **Lista de posts**: `docs/posts/list.json` — array de objetos com `slug`, `date`, `title_pt`, `title_en`, `tags`. Sempre adicionar uma entrada nova aqui quando criar um `.md`.
+
+## Formato do `.md`
+
+Frontmatter (YAML entre `---`):
+
+- `slug` — igual ao nome do arquivo sem `.md`
+- `date` — ISO `YYYY-MM-DD`
+- `title_pt` — título em português (aspas se tiver `:`)
+- `title_en` — título em inglês (aspas se tiver `:`)
+- `tags` — (opcional) array de strings para categorizar, ex.: `tags: ["blog", "tutorial"]`
+
+Corpo: duas seções com cabeçalhos de nível 2:
+
+- `## PT` — texto em português (até o próximo `##`)
+- `## EN` — texto em inglês (até o próximo `##`)
+
+Pode usar Markdown normal: listas, **negrito**, *itálico*, links, blocos de código, imagens. Imagens em `docs/assets/` referenciadas como `![alt](assets/nome.ext)`.
+
+## Ao criar um novo post
+
+1. Criar `docs/posts/<slug>.md` com frontmatter e seções `## PT` e `## EN`.
+2. Adicionar em `docs/posts/list.json` um objeto com os mesmos `slug`, `date`, `title_pt`, `title_en` e `tags` (se usar). Novo post no topo do array.
+
+## Exemplo
+
+**Arquivo:** `docs/posts/ola-mundo.md`
+
+```markdown
+---
+slug: ola-mundo
+date: 2025-02-28
+title_pt: "Olá, mundo"
+title_en: "Hello, world"
+tags: ["blog", "exemplo"]
+---
+
+## PT
+Primeiro parágrafo em português.
+
+## EN
+First paragraph in English.
+```
+
+**Em** `docs/posts/list.json` (adicionar ao array):
+
+```json
+{
+  "slug": "ola-mundo",
+  "date": "2025-02-28",
+  "title_pt": "Olá, mundo",
+  "title_en": "Hello, world",
+  "tags": ["blog", "exemplo"]
+}
+```

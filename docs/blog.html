@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/favicon.ico">
+    <title>Blog | Pinto Solutions</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        html {
+            background-color: rgb(17 24 39);
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.15)'/%3E%3C/svg%3E");
+            background-position: center;
+            min-height: 100%;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+        .page-content {
+            width: 100%;
+            min-height: 100vh;
+            padding: 1rem 1rem;
+            box-sizing: border-box;
+        }
+        .blog-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 1rem;
+        }
+        .blog-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5em;
+            letter-spacing: 0.2em;
+            margin: 0;
+        }
+        .blog-title a {
+            color: white;
+            text-decoration: none;
+        }
+        .blog-title a:hover {
+            opacity: 0.9;
+        }
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+        }
+        .button {
+            font-family: 'Oswald', sans-serif;
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb;
+            background-color: rgb(37 42 55 / 0.5);
+            padding: 10px 20px;
+            color: white;
+            border-radius: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+        .button.active {
+            background-color: rgb(55 65 81);
+        }
+        .button-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px;
+        }
+        #post-list {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .list-view-inner {
+            display: flex;
+            gap: 2rem;
+            max-width: 960px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .list-view-main {
+            flex: 1;
+            min-width: 0;
+        }
+        .blog-sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background-color: rgb(37 42 55 / 0.5);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .blog-sidebar .profile-photo {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        .blog-sidebar .profile-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin: 0 0 0.25rem;
+            color: white;
+        }
+        .blog-sidebar .profile-role {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin: 0 0 1rem;
+        }
+        .blog-sidebar .profile-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .blog-sidebar .profile-buttons .button {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-sidebar .profile-buttons .button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .post-card {
+            background-color: rgb(37 42 55 / 0.5);
+            border-radius: 0.5rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: transform 0.15s, background-color 0.15s;
+        }
+        .post-card:hover {
+            transform: translateY(-2px);
+            background-color: rgb(37 42 55 / 0.8);
+        }
+        .post-card h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 400;
+        }
+        .post-card .post-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .post-card .post-tags {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+        .post-card .tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 0.25rem;
+        }
+        .blog-filters {
+            max-width: 640px;
+            margin: 0 auto 1.5rem;
+        }
+        .blog-filters .search-wrap {
+            margin-bottom: 0.75rem;
+        }
+        .blog-filters input[type="search"] {
+            width: 100%;
+            max-width: 320px;
+            padding: 0.5rem 0.75rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgb(37 42 55 / 0.5);
+            color: white;
+            box-sizing: border-box;
+        }
+        .blog-filters input[type="search"]::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        .blog-filters .tags-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .blog-filters .tags-wrap .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .blog-filters .tag-btn {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 0.5rem;
+            border: 0;
+            background: rgb(37 42 55 / 0.5);
+            color: white;
+            cursor: pointer;
+        }
+        .blog-filters .tag-btn:hover {
+            background: rgb(37 42 55 / 0.8);
+        }
+        .blog-filters .tag-btn.active {
+            background: rgb(55 65 81);
+        }
+        #post-view {
+            max-width: 720px;
+            margin: 0 auto;
+            display: none;
+        }
+        #post-view.visible {
+            display: block;
+        }
+        #list-view.hidden {
+            display: none;
+        }
+        .post-article {
+            background-color: rgb(37 42 55 / 0.5);
+            border-radius: 0.5rem;
+            padding: 1.5rem 2rem;
+            line-height: 1.6;
+        }
+        .post-article h1,
+        .post-article h2,
+        .post-article h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 400;
+        }
+        .post-article h1 { font-size: 1.5rem; }
+        .post-article h2 { font-size: 1.25rem; }
+        .post-article h3 { font-size: 1.1rem; }
+        .post-article p { margin: 0.75rem 0; }
+        .post-article ul, .post-article ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+        .post-article a { color: #93c5fd; }
+        .post-article a:hover { text-decoration: underline; }
+        .post-article img { max-width: 100%; height: auto; border-radius: 0.25rem; }
+        .post-article pre {
+            background: rgb(17 24 39);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        .post-article code { font-family: monospace; }
+        .post-article pre code { background: none; padding: 0; }
+        .post-meta {
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .post-article .post-tags {
+            margin-bottom: 1rem;
+        }
+        .post-article .tag {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(255,255,255,0.15);
+            border-radius: 0.25rem;
+            margin-right: 0.35rem;
+        }
+        .loading, .error {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.9;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        @media only screen and (max-width: 500px) {
+            .blog-header { flex-direction: column; align-items: flex-start; }
+            .post-article { padding: 1rem 1.25rem; }
+        }
+        @media only screen and (max-width: 900px) {
+            .list-view-inner { flex-direction: column; }
+            .blog-sidebar { width: 100%; max-width: 320px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-content">
+        <header class="blog-header">
+            <h1 class="blog-title"><a href="index.html">Pinto Solutions</a> · Blog</h1>
+            <div class="lang-switcher">
+                <button type="button" class="button active" data-lang="pt" aria-pressed="true">PT</button>
+                <button type="button" class="button" data-lang="en" aria-pressed="false">EN</button>
+            </div>
+        </header>
+
+        <main id="list-view">
+            <div class="list-view-inner">
+                <div class="list-view-main">
+                    <div class="blog-filters">
+                        <div class="search-wrap">
+                            <input type="search" id="search-input" placeholder="Buscar posts…" aria-label="Buscar posts">
+                        </div>
+                        <div class="tags-wrap">
+                            <span class="label" id="tags-label">Tags:</span>
+                            <div id="tag-filters"></div>
+                        </div>
+                    </div>
+                    <div id="post-list"></div>
+                    <p id="list-loading" class="loading">Carregando posts…</p>
+                    <p id="list-error" class="error" style="display:none;">Não foi possível carregar os posts.</p>
+                    <p id="list-empty" class="loading" style="display:none;"></p>
+                </div>
+                <aside class="blog-sidebar">
+                    <img src="assets/profile.png" alt="André Ferreira Pinto" class="profile-photo">
+                    <h2 class="profile-name">André Ferreira Pinto</h2>
+                    <p class="profile-role">Software Engineer</p>
+                    <div class="profile-buttons">
+                        <a href="https://github.com/andferr" target="_blank" rel="noopener noreferrer" class="button" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+                        <a href="https://www.linkedin.com/in/af-pinto/" target="_blank" rel="noopener noreferrer" class="button" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                        <a href="https://whatsa.me/5532984110933" target="_blank" rel="noopener noreferrer" class="button" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <main id="post-view">
+            <a href="#" id="back-link" class="button back-link">← Voltar</a>
+            <div id="post-content"></div>
+            <p id="post-loading" class="loading" style="display:none;">Carregando…</p>
+            <p id="post-error" class="error" style="display:none;">Não foi possível carregar o post.</p>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            const LIST_URL = 'posts/list.json';
+            const POSTS_BASE = 'posts/';
+            let lang = localStorage.getItem('blog-lang') || 'pt';
+            let posts = [];
+
+            const listView = document.getElementById('list-view');
+            const postView = document.getElementById('post-view');
+            const postList = document.getElementById('post-list');
+            const postContent = document.getElementById('post-content');
+            const listLoading = document.getElementById('list-loading');
+            const listError = document.getElementById('list-error');
+            const listEmpty = document.getElementById('list-empty');
+            const postLoading = document.getElementById('post-loading');
+            const postError = document.getElementById('post-error');
+            const backLink = document.getElementById('back-link');
+            const searchInput = document.getElementById('search-input');
+            const tagFiltersEl = document.getElementById('tag-filters');
+            const tagsLabel = document.getElementById('tags-label');
+
+            let selectedTag = '';
+            let searchQuery = '';
+
+            function getMainTags(postsList) {
+                const count = {};
+                postsList.forEach(function (p) {
+                    const t = p.tags;
+                    if (Array.isArray(t)) t.forEach(function (tag) { count[tag] = (count[tag] || 0) + 1; });
+                });
+                return Object.keys(count).sort(function (a, b) { return count[b] - count[a]; });
+            }
+
+            function filterPosts() {
+                let list = posts;
+                if (selectedTag) {
+                    list = list.filter(function (p) {
+                        return Array.isArray(p.tags) && p.tags.indexOf(selectedTag) >= 0;
+                    });
+                }
+                if (searchQuery) {
+                    const q = searchQuery.toLowerCase().trim();
+                    list = list.filter(function (p) {
+                        const titlePt = (p.title_pt || '').toLowerCase();
+                        const titleEn = (p.title_en || '').toLowerCase();
+                        const slug = (p.slug || '').toLowerCase();
+                        return titlePt.indexOf(q) >= 0 || titleEn.indexOf(q) >= 0 || slug.indexOf(q) >= 0;
+                    });
+                }
+                return list;
+            }
+
+            function updateFiltersUi() {
+                searchInput.placeholder = lang === 'pt' ? 'Buscar posts…' : 'Search posts…';
+                tagsLabel.textContent = lang === 'pt' ? 'Tags:' : 'Tags:';
+                listEmpty.textContent = lang === 'pt' ? 'Nenhum post encontrado.' : 'No posts found.';
+            }
+
+            function setLang(newLang) {
+                lang = newLang;
+                localStorage.setItem('blog-lang', lang);
+                document.querySelectorAll('.lang-switcher .button').forEach(function (btn) {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                    btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+                });
+                renderList();
+                renderTagFilters();
+                if (postView.classList.contains('visible')) {
+                    const slug = postView.getAttribute('data-slug');
+                    if (slug) loadPost(slug);
+                }
+            }
+
+            function renderTagFilters() {
+                const mainTags = getMainTags(posts);
+                tagFiltersEl.parentElement.style.display = mainTags.length ? '' : 'none';
+                tagFiltersEl.innerHTML = mainTags.map(function (tag) {
+                    const active = selectedTag === tag ? ' active' : '';
+                    return '<button type="button" class="tag-btn' + active + '" data-tag="' + escapeHtml(tag) + '">' + escapeHtml(tag) + '</button>';
+                }).join('');
+                tagFiltersEl.querySelectorAll('.tag-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        selectedTag = selectedTag === btn.getAttribute('data-tag') ? '' : btn.getAttribute('data-tag');
+                        renderTagFilters();
+                        renderList();
+                    });
+                });
+            }
+
+            function renderList() {
+                const filtered = filterPosts();
+                updateFiltersUi();
+                const key = lang === 'pt' ? 'title_pt' : 'title_en';
+                const dateKey = 'date';
+                postList.innerHTML = filtered.map(function (p) {
+                    const date = p[dateKey] || '';
+                    const title = p[key] || p.title_pt || p.title_en || p.slug;
+                    const tags = Array.isArray(p.tags) ? p.tags : [];
+                    const tagsHtml = tags.length ? '<div class="post-tags">' + tags.map(function (t) {
+                        return '<span class="tag">' + escapeHtml(t) + '</span>';
+                    }).join('') + '</div>' : '';
+                    return '<article class="post-card" data-slug="' + escapeHtml(p.slug) + '">' +
+                        '<h2>' + escapeHtml(title) + '</h2>' +
+                        '<div class="post-date">' + escapeHtml(formatDate(date)) + '</div>' +
+                        tagsHtml +
+                        '</article>';
+                }).join('');
+
+                listEmpty.style.display = filtered.length === 0 ? 'block' : 'none';
+
+                postList.querySelectorAll('.post-card').forEach(function (el) {
+                    el.addEventListener('click', function () {
+                        showPost(el.getAttribute('data-slug'));
+                    });
+                });
+            }
+
+            function formatDate(iso) {
+                if (!iso) return '';
+                const d = new Date(iso);
+                if (isNaN(d.getTime())) return iso;
+                return lang === 'pt'
+                    ? d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
+                    : d.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+            }
+
+            function escapeHtml(s) {
+                if (!s) return '';
+                const div = document.createElement('div');
+                div.textContent = s;
+                return div.innerHTML;
+            }
+
+            function showList() {
+                listView.classList.remove('hidden');
+                postView.classList.remove('visible');
+                postView.removeAttribute('data-slug');
+            }
+
+            function showPost(slug) {
+                listView.classList.add('hidden');
+                postView.classList.add('visible');
+                postView.setAttribute('data-slug', slug);
+                backLink.href = '#';
+                loadPost(slug);
+            }
+
+            backLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                showList();
+                history.replaceState({ view: 'list' }, '', 'blog.html');
+            });
+
+            window.addEventListener('popstate', function (e) {
+                if (e.state && e.state.view === 'post' && e.state.slug) {
+                    showPost(e.state.slug);
+                } else {
+                    showList();
+                }
+            });
+
+            function parseFrontmatter(text) {
+                const match = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
+                if (!match) return { meta: {}, body: text };
+                const meta = {};
+                match[1].split('\n').forEach(function (line) {
+                    const colon = line.indexOf(':');
+                    if (colon > 0) {
+                        const k = line.slice(0, colon).trim();
+                        let v = line.slice(colon + 1).trim();
+                        if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")))
+                            v = v.slice(1, -1);
+                        else if (v.startsWith('[')) {
+                            try { v = JSON.parse(v); } catch (e) {}
+                        }
+                        meta[k] = v;
+                    }
+                });
+                return { meta: meta, body: match[2] };
+            }
+
+            function extractSections(body) {
+                const sections = { pt: '', en: '' };
+                const regex = /^##\s+(PT|EN)\s*$/gm;
+                let lastIndex = 0;
+                let lastLang = null;
+                let m;
+                while ((m = regex.exec(body)) !== null) {
+                    if (lastLang) {
+                        sections[lastLang] = body.slice(lastIndex, m.index).trim();
+                    }
+                    lastLang = m[1].toLowerCase();
+                    lastIndex = m.index + m[0].length;
+                }
+                if (lastLang) {
+                    sections[lastLang] = body.slice(lastIndex).trim();
+                }
+                return sections;
+            }
+
+            function loadPost(slug) {
+                postError.style.display = 'none';
+                postContent.innerHTML = '';
+                postLoading.style.display = 'block';
+                history.replaceState({ view: 'post', slug: slug }, '', 'blog.html#post-' + slug);
+
+                fetch(POSTS_BASE + slug + '.md')
+                    .then(function (r) {
+                        if (!r.ok) throw new Error('Post not found');
+                        return r.text();
+                    })
+                    .then(function (raw) {
+                        const { meta, body } = parseFrontmatter(raw);
+                        const sections = extractSections(body);
+                        const title = lang === 'pt' ? (meta.title_pt || meta.title_en) : (meta.title_en || meta.title_pt);
+                        const content = sections[lang] || sections.pt || sections.en || '';
+                        const html = marked.parse(content, { gfm: true });
+                        const metaTags = Array.isArray(meta.tags) ? meta.tags : [];
+                        const tagsHtml = metaTags.length ? '<div class="post-tags">' + metaTags.map(function (t) {
+                            return '<span class="tag">' + escapeHtml(String(t)) + '</span>';
+                        }).join('') + '</div>' : '';
+                        postContent.innerHTML =
+                            '<article class="post-article">' +
+                            '<h1>' + escapeHtml(title) + '</h1>' +
+                            '<div class="post-meta">' + escapeHtml(formatDate(meta.date || '')) + tagsHtml + '</div>' +
+                            '<div class="post-body">' + html + '</div>' +
+                            '</article>';
+                        postLoading.style.display = 'none';
+                    })
+                    .catch(function () {
+                        postLoading.style.display = 'none';
+                        postError.style.display = 'block';
+                        postError.textContent = lang === 'pt' ? 'Não foi possível carregar o post.' : 'Could not load the post.';
+                    });
+            }
+
+            document.querySelectorAll('.lang-switcher .button').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    setLang(btn.getAttribute('data-lang'));
+                });
+            });
+
+            searchInput.addEventListener('input', function () {
+                searchQuery = searchInput.value;
+                renderList();
+            });
+
+            fetch(LIST_URL)
+                .then(function (r) {
+                    if (!r.ok) throw new Error('List failed');
+                    return r.json();
+                })
+                .then(function (data) {
+                    posts = Array.isArray(data) ? data : [];
+                    posts.forEach(function (p) {
+                        if (!Array.isArray(p.tags)) p.tags = [];
+                    });
+                    listLoading.style.display = 'none';
+                    if (posts.length === 0) {
+                        postList.innerHTML = '<p class="loading">' + (lang === 'pt' ? 'Nenhum post ainda.' : 'No posts yet.') + '</p>';
+                    } else {
+                        renderTagFilters();
+                        renderList();
+                    }
+                })
+                .catch(function () {
+                    listLoading.style.display = 'none';
+                    listError.style.display = 'block';
+                });
+
+            if (window.location.hash && window.location.hash.startsWith('#post-')) {
+                const slug = window.location.hash.slice(6);
+                showPost(slug);
+            }
+        })();
+    </script>
+</body>
+</html>

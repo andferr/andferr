@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "testando-o-mecanismo-do-blog",
+    "date": "2025-02-28",
+    "title_pt": "Testando o mecanismo do blog",
+    "title_en": "Testing the blog mechanism",
+    "tags": ["blog", "teste", "tutorial"]
+  },
+  {
+    "slug": "exemplo-bem-vindo-ao-blog",
+    "date": "2025-02-28",
+    "title_pt": "Bem-vindo ao blog",
+    "title_en": "Welcome to the blog",
+    "tags": ["blog", "exemplo"]
+  }
+]
