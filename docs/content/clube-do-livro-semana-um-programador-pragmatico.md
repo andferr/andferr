@@ -63,14 +63,53 @@ No fim, pragmatismo não é sobre fazer menos.
 ## EN
 Readings, pragmatism, and the programmer's role in the age of AI
 
-Over the past few weeks I've joined a book club with some colleagues. We pick a book, read a few chapters each week, and discuss every Friday. The current book is *The Pragmatic Programmer* by Andrew Hunt and David Thomas.
+Over the past few weeks I've joined a book club with some colleagues from work. The idea is simple: we pick a book, read a few chapters during the week, and discuss it together every Friday. The current book is *The Pragmatic Programmer: From Journeyman to Master*, by Andrew Hunt and David Thomas.
 
-I'm turning those discussions into a short series of posts with my takeaways from each chapter.
+The conversations have been so rich that I decided to extend the discussion here and start a series of posts with my reflections on each chapter we read.
 
-The book feels very timely: it doesn't talk about AI directly, but it stresses that programming is about making decisions, not typing code — and decisions remain deeply human. The pragmatic programmer is defined by attitude: owning what you ship, thinking critically, learning continuously, and understanding that software lives in a context of people, time, business, and technical limits.
+### A very timely book for the moment we're living in
 
-The first chapter, *A Pragmatic Philosophy*, sets the tone: systems don't degrade "out of nowhere" — they erode through neglect and small uncorrected mistakes. Quality isn't perfection; it's fitness for context. The book also stresses that communication is a technical skill: code, design choices, and even silence send a message.
+I thought the choice of book was spot-on for where the market is right now. We're living through rapid advances in artificial intelligence, along with constant questions: will programmers be replaced? And if not, what will the developer's new role look like day to day?
 
-This is my first time reading the book. I'm grateful to my manager Carlos Monteiro and my colleague Adelson for starting the reading group and helping me build a consistent reading habit.
+The book doesn't talk about AI directly — it predates this boom — but it hits exactly the point that remains relevant: programming isn't about typing code, it's about making decisions. And decisions are still deeply human.
 
-I plan to share reflections here every week as we move through the chapters. In the end, pragmatism isn't about doing less — it's about thinking better while we do it.
+### Programming is deciding in an imperfect world
+
+Right from the preface, the book makes one thing very clear:
+
+> there are no magic tools, no silver-bullet languages, no universal methodologies. What exists are different contexts, real problems, and unavoidable constraints.
+
+The so-called pragmatic programmer is defined less by the techniques they master and more by the attitude they take. They take responsibility for what they deliver, think critically about their decisions, learn continuously, and understand that software doesn't exist in a vacuum. They operate in a context that involves people, time, business, and technical limits.
+
+### A philosophy before any technique
+
+The first chapter, *A Pragmatic Philosophy*, sets the foundation for all of this. It shows that systems don't degrade "out of nowhere". They deteriorate gradually, through neglect, repeated excuses, and small wrong decisions that never get corrected.
+
+At the same time, the book makes an important point: quality isn't synonymous with absolute perfection. The goal isn't to build flawless systems, but systems with quality appropriate to the context they're in. Knowing when to stop, when to simplify, and when to accept trade-offs is part of the job.
+
+### Active responsibility in software development
+
+This view caught my attention because it demands something that seems obvious but is rarely put into practice: active responsibility for the software we're building.
+
+In daily routine it's easy to go on autopilot. Close cards, deliver tasks, finish sprints. But being a good programmer requires more than that. It requires questioning whether we really understand the context we're working in, the real goal of that feature, the client's expectations, and the long-term technical impact of that decision.
+
+When it comes down to it, writing code is only a small part of our work. Before that comes analysis, design, trade-offs, and decision-making. To do all of that well, we need to study constantly, read, exchange ideas, and engage with topics inside and outside the technical domain. All of that builds our experience and directly affects our ability to build quality software.
+
+### Communication is also a technical skill
+
+Another strong point in the chapter is the emphasis on communication. The book makes it clear that technical knowledge alone is not enough.
+
+Communicating well is also the programmer's responsibility. That means taking an active stance to ensure the message was understood. Thinking about the context, the audience, anticipating questions, understanding their level of interest, their need for motivation, and the impact of that communication.
+
+Code, technical decisions, and even silence communicate something. Ignoring that opens the door to rework, frustration, and misunderstood systems.
+
+### Reading, habit, and commitment
+
+This is the first time I'm reading this book. I'd known about it for a long time, but my lack of a reading habit kept postponing that decision. I'd like to thank my manager Carlos Monteiro and my colleague Adelson for starting this reading group and creating a space that helps me maintain this important habit — and fight my ADHD every day.
+
+### Upcoming chapters
+
+If you enjoyed this reflection, I strongly recommend reading the book. And if it makes sense, follow along on the blog: every week I plan to share my reflections on the next chapters and how these ideas connect to our day-to-day as developers.
+
+In the end, pragmatism isn't about doing less.
+It's about thinking better while we do it.
